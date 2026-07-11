@@ -1,0 +1,33 @@
+{
+  "id": "com.example.smartevse",
+  "version": "2.0.0",
+  "compatibility": ">=12.11.0",
+  "sdk": 3,
+  "name": {
+    "en": "SmartEVSE",
+    "nl": "SmartEVSE"
+  },
+  "description": {
+    "en": "Smart, efficient, and reliable electric vehicle charging.",
+    "nl": "Slim, efficiënt en betrouwbaar elektrisch laden."
+  },
+  "category": [
+    "energy"
+  ],
+  "brandColor": "#00A651",
+  "permissions": [],
+  "author": {
+    "name": "Rex Markesteijn",
+    "email": "rmarkesteijn@icloud.com"
+  },
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png"
+  },
+  "homepage": "https://github.com/spikerm/homey-smartevse",
+  "supportUrl": "https://github.com/spikerm/homey-smartevse/issues",
+  "bugs": {
+    "url": "https://github.com/spikerm/homey-smartevse/issues"
+  },
+  "communityTopicId": 147883
+}

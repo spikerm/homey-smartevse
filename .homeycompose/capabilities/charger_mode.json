@@ -1,0 +1,40 @@
+{
+  "type": "enum",
+  "title": {
+    "en": "Mode",
+    "nl": "Mode"
+  },
+  "getable": true,
+  "setable": true,
+  "uiComponent": "picker",
+  "values": [
+    {
+      "id": "off",
+      "title": {
+        "en": "OFF",
+        "nl": "UIT"
+      }
+    },
+    {
+      "id": "normal",
+      "title": {
+        "en": "NORMAL",
+        "nl": "NORMAAL"
+      }
+    },
+    {
+      "id": "solar",
+      "title": {
+        "en": "SOLAR",
+        "nl": "ZON"
+      }
+    },
+    {
+      "id": "smart",
+      "title": {
+        "en": "SMART",
+        "nl": "SLIM"
+      }
+    }
+  ]
+}

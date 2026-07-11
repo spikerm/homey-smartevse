@@ -1,0 +1,33 @@
+{
+  "type": "enum",
+  "title": {
+    "en": "Charging state",
+    "nl": "Laadstatus"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "picker",
+  "values": [
+    {
+      "id": "idle",
+      "title": {
+        "en": "Idle",
+        "nl": "Idle"
+      }
+    },
+    {
+      "id": "charging",
+      "title": {
+        "en": "Charging",
+        "nl": "Laden"
+      }
+    },
+    {
+      "id": "finished",
+      "title": {
+        "en": "Finished",
+        "nl": "Klaar"
+      }
+    }
+  ]
+}

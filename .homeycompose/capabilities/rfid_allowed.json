@@ -1,0 +1,10 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "RFID allowed",
+    "nl": "RFID toegestaan"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor"
+}

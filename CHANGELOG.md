@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 This project follows a pragmatic versioning approach aligned with Homey App Store submissions.
 
+## [2.0.0] - 2026-02-06
+### Added
+- BESEN driver added.
+
 ## [1.2.5] - 2025-12-29
 ### Changed
 - Improved driver images (higher contrast) so the device icon is clearly visible in Homey tiles.

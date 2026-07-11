@@ -1,0 +1,17 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Override current (A)",
+    "nl": "Override-stroom (A)"
+  },
+  "units": {
+    "en": "A",
+    "nl": "A"
+  },
+  "getable": true,
+  "setable": true,
+  "uiComponent": "slider",
+  "min": 0,
+  "max": 32,
+  "step": 0.1
+}

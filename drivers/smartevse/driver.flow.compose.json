@@ -1,0 +1,79 @@
+{
+  "actions": [
+    {
+      "id": "reboot",
+      "title": {
+        "en": "Reboot SmartEVSE",
+        "nl": "Herstart SmartEVSE"
+      },
+      "titleFormatted": {
+        "en": "Reboot SmartEVSE",
+        "nl": "Herstart SmartEVSE"
+      },
+      "args": []
+    },
+    {
+      "id": "reset_rfid_totals",
+      "title": {
+        "en": "Reset RFID totals",
+        "nl": "Reset RFID totalen"
+      },
+      "titleFormatted": {
+        "en": "Reset RFID totals",
+        "nl": "Reset RFID totalen"
+      },
+      "args": []
+    },
+    {
+      "id": "set_mode",
+      "title": {
+        "en": "Set SmartEVSE mode",
+        "nl": "Zet SmartEVSE mode"
+      },
+      "titleFormatted": {
+        "en": "Set SmartEVSE mode to [[mode]]",
+        "nl": "Zet SmartEVSE mode naar [[mode]]"
+      },
+      "args": [
+        {
+          "type": "dropdown",
+          "name": "mode",
+          "title": {
+            "en": "Mode",
+            "nl": "Mode"
+          },
+          "values": [
+            {
+              "id": "0",
+              "title": {
+                "en": "OFF",
+                "nl": "UIT"
+              }
+            },
+            {
+              "id": "1",
+              "title": {
+                "en": "NORMAL",
+                "nl": "NORMAAL"
+              }
+            },
+            {
+              "id": "2",
+              "title": {
+                "en": "SOLAR",
+                "nl": "ZON"
+              }
+            },
+            {
+              "id": "3",
+              "title": {
+                "en": "SMART",
+                "nl": "SLIM"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

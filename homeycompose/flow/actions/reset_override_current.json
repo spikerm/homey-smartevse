@@ -12,7 +12,7 @@
     {
       "type": "device",
       "name": "device",
-      "filter": "driver_id=smartevse"
+      "filter": "driver_id=smartevse|besen"
     }
   ]
 }

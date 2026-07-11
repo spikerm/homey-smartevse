@@ -1,0 +1,10 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "Reset override",
+    "nl": "Reset override"
+  },
+  "getable": false,
+  "setable": true,
+  "uiComponent": "button"
+}

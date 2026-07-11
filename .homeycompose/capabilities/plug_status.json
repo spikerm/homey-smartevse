@@ -1,0 +1,26 @@
+{
+  "type": "enum",
+  "title": {
+    "en": "Plug status",
+    "nl": "Stekker status"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "picker",
+  "values": [
+    {
+      "id": "plugged",
+      "title": {
+        "en": "Connected",
+        "nl": "Aangesloten"
+      }
+    },
+    {
+      "id": "unplugged",
+      "title": {
+        "en": "Disconnected",
+        "nl": "Niet aangesloten"
+      }
+    }
+  ]
+}

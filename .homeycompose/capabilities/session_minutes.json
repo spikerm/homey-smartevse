@@ -1,0 +1,17 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Session duration",
+    "nl": "Sessie duur"
+  },
+  "units": {
+    "en": "min",
+    "nl": "min"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "min": 0,
+  "max": 100000,
+  "step": 1
+}

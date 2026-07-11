@@ -1,0 +1,10 @@
+{
+  "type": "string",
+  "title": {
+    "en": "RFID totals (kWh)",
+    "nl": "RFID totalen (kWh)"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor"
+}

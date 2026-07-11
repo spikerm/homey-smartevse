@@ -1,0 +1,10 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Last RFID card",
+    "nl": "Laatste RFID kaart"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor"
+}

@@ -1,0 +1,21 @@
+{
+  "triggers": [
+    {
+      "id": "charger_plugged_in",
+      "title": {
+        "en": "Plugged in",
+        "nl": "Stekker ingestoken"
+      },
+      "args": []
+    },
+    {
+      "id": "charger_plugged_out",
+      "title": {
+        "en": "Plugged out",
+        "nl": "Stekker uitgetrokken"
+      },
+      "args": []
+    }
+  ],
+  "actions":[]
+}

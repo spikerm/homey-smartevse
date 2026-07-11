@@ -51,6 +51,198 @@
       }
     }
   ],
+  "flow": {
+    "triggers": [
+      {
+        "id": "charging_started",
+        "title": {
+          "en": "Charging started",
+          "nl": "Laden gestart"
+        }
+      },
+      {
+        "id": "charging_stopped",
+        "title": {
+          "en": "Charging stopped",
+          "nl": "Laden gestopt"
+        }
+      },
+      {
+        "id": "rfid_scanned",
+        "title": {
+          "en": "RFID card scanned",
+          "nl": "RFID kaart gescand"
+        },
+        "tokens": [
+          {
+            "name": "rfid",
+            "type": "string",
+            "title": {
+              "en": "RFID card ID",
+              "nl": "RFID kaart ID"
+            }
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "title": {
+              "en": "Name",
+              "nl": "Naam"
+            }
+          },
+          {
+            "name": "allowed",
+            "type": "boolean",
+            "title": {
+              "en": "Allowed",
+              "nl": "Toegestaan"
+            }
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "reboot",
+        "title": {
+          "en": "Reboot SmartEVSE",
+          "nl": "Herstart SmartEVSE"
+        },
+        "titleFormatted": {
+          "en": "Reboot SmartEVSE",
+          "nl": "Herstart SmartEVSE"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=smartevse"
+          }
+        ]
+      },
+      {
+        "id": "reset_override_current",
+        "title": {
+          "en": "Reset SmartEVSE override current",
+          "nl": "Reset SmartEVSE override-stroom"
+        },
+        "titleFormatted": {
+          "en": "Reset SmartEVSE override current",
+          "nl": "Reset SmartEVSE override-stroom"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=smartevse"
+          }
+        ]
+      },
+      {
+        "id": "reset_rfid_totals",
+        "title": {
+          "en": "Reset RFID totals",
+          "nl": "Reset RFID totalen"
+        },
+        "titleFormatted": {
+          "en": "Reset RFID totals",
+          "nl": "Reset RFID totalen"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=smartevse"
+          }
+        ]
+      },
+      {
+        "id": "set_mode",
+        "title": {
+          "en": "Set SmartEVSE mode",
+          "nl": "Zet SmartEVSE mode"
+        },
+        "titleFormatted": {
+          "en": "Set SmartEVSE mode to [[mode]]",
+          "nl": "Zet SmartEVSE mode naar [[mode]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=smartevse"
+          },
+          {
+            "type": "dropdown",
+            "name": "mode",
+            "title": {
+              "en": "Mode",
+              "nl": "Mode"
+            },
+            "values": [
+              {
+                "id": "0",
+                "title": {
+                  "en": "OFF",
+                  "nl": "UIT"
+                }
+              },
+              {
+                "id": "1",
+                "title": {
+                  "en": "NORMAL",
+                  "nl": "NORMAAL"
+                }
+              },
+              {
+                "id": "2",
+                "title": {
+                  "en": "SOLAR",
+                  "nl": "ZON"
+                }
+              },
+              {
+                "id": "3",
+                "title": {
+                  "en": "SMART",
+                  "nl": "SLIM"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "set_override_current",
+        "title": {
+          "en": "Set SmartEVSE override current",
+          "nl": "Zet SmartEVSE override-stroom"
+        },
+        "titleFormatted": {
+          "en": "Set SmartEVSE override current to [[current_a]] A",
+          "nl": "Zet SmartEVSE override-stroom naar [[current_a]] A"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=smartevse"
+          },
+          {
+            "type": "number",
+            "name": "current_a",
+            "title": {
+              "en": "Current (A)",
+              "nl": "Stroom (A)"
+            },
+            "min": 0,
+            "max": 32,
+            "step": 0.1
+          }
+        ]
+      }
+    ]
+  },
   "settings": [
     {
       "id": "host",

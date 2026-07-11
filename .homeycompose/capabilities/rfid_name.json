@@ -1,0 +1,10 @@
+{
+  "type": "string",
+  "title": {
+    "en": "RFID name",
+    "nl": "RFID naam"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor"
+}
