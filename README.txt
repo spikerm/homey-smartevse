@@ -1,3 +1,3 @@
-Connect SmartEVSE chargers to Homey.
+SmartEVSE connects your EV charging station to Homey for convenient monitoring, control and automation. View charging status, power consumption, energy usage, RFID information and grid currents, and control charging modes, charging phases and current through Homey and Flows.
 
-See live charging status, power and energy usage, plus optional notifications when charging starts or stops.
+Optional integration with the Homey Energy Dongle and a home battery helps SmartEVSE make better use of available solar energy while preventing unwanted battery discharge during EV charging.

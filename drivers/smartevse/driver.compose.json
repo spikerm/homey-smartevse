@@ -9,22 +9,31 @@
     "meterPowerImportedCapability": "meter_power"
   },
   "capabilities": [
+    "evcharger_charging_state",
+    "charging_status_text",
+    "evcharger_charging",
     "measure_power",
     "meter_power",
-    "evcharger_charging_state",
-    "evcharger_charging",
     "charger_mode",
+    "charge_phase_mode",
     "override_current_a",
     "override_reset",
     "plug_status",
-    "charging_state",
     "session_minutes",
     "rfid_status",
     "rfid_last",
     "rfid_allowed",
     "rfid_name",
     "rfid_totals",
-    "alarm_generic"
+    "alarm_generic",
+    "charged_kwh",
+    "home_battery_current_a",
+    "home_battery_source_status",
+    "energy_dongle_status",
+    "mains_power_total",
+    "mains_current_l1",
+    "mains_current_l2",
+    "mains_current_l3"
   ],
   "images": {
     "small": "/drivers/smartevse/assets/images/small.png",
@@ -51,198 +60,6 @@
       }
     }
   ],
-  "flow": {
-    "triggers": [
-      {
-        "id": "charging_started",
-        "title": {
-          "en": "Charging started",
-          "nl": "Laden gestart"
-        }
-      },
-      {
-        "id": "charging_stopped",
-        "title": {
-          "en": "Charging stopped",
-          "nl": "Laden gestopt"
-        }
-      },
-      {
-        "id": "rfid_scanned",
-        "title": {
-          "en": "RFID card scanned",
-          "nl": "RFID kaart gescand"
-        },
-        "tokens": [
-          {
-            "name": "rfid",
-            "type": "string",
-            "title": {
-              "en": "RFID card ID",
-              "nl": "RFID kaart ID"
-            }
-          },
-          {
-            "name": "name",
-            "type": "string",
-            "title": {
-              "en": "Name",
-              "nl": "Naam"
-            }
-          },
-          {
-            "name": "allowed",
-            "type": "boolean",
-            "title": {
-              "en": "Allowed",
-              "nl": "Toegestaan"
-            }
-          }
-        ]
-      }
-    ],
-    "actions": [
-      {
-        "id": "reboot",
-        "title": {
-          "en": "Reboot SmartEVSE",
-          "nl": "Herstart SmartEVSE"
-        },
-        "titleFormatted": {
-          "en": "Reboot SmartEVSE",
-          "nl": "Herstart SmartEVSE"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=smartevse"
-          }
-        ]
-      },
-      {
-        "id": "reset_override_current",
-        "title": {
-          "en": "Reset SmartEVSE override current",
-          "nl": "Reset SmartEVSE override-stroom"
-        },
-        "titleFormatted": {
-          "en": "Reset SmartEVSE override current",
-          "nl": "Reset SmartEVSE override-stroom"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=smartevse"
-          }
-        ]
-      },
-      {
-        "id": "reset_rfid_totals",
-        "title": {
-          "en": "Reset RFID totals",
-          "nl": "Reset RFID totalen"
-        },
-        "titleFormatted": {
-          "en": "Reset RFID totals",
-          "nl": "Reset RFID totalen"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=smartevse"
-          }
-        ]
-      },
-      {
-        "id": "set_mode",
-        "title": {
-          "en": "Set SmartEVSE mode",
-          "nl": "Zet SmartEVSE mode"
-        },
-        "titleFormatted": {
-          "en": "Set SmartEVSE mode to [[mode]]",
-          "nl": "Zet SmartEVSE mode naar [[mode]]"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=smartevse"
-          },
-          {
-            "type": "dropdown",
-            "name": "mode",
-            "title": {
-              "en": "Mode",
-              "nl": "Mode"
-            },
-            "values": [
-              {
-                "id": "0",
-                "title": {
-                  "en": "OFF",
-                  "nl": "UIT"
-                }
-              },
-              {
-                "id": "1",
-                "title": {
-                  "en": "NORMAL",
-                  "nl": "NORMAAL"
-                }
-              },
-              {
-                "id": "2",
-                "title": {
-                  "en": "SOLAR",
-                  "nl": "ZON"
-                }
-              },
-              {
-                "id": "3",
-                "title": {
-                  "en": "SMART",
-                  "nl": "SLIM"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "set_override_current",
-        "title": {
-          "en": "Set SmartEVSE override current",
-          "nl": "Zet SmartEVSE override-stroom"
-        },
-        "titleFormatted": {
-          "en": "Set SmartEVSE override current to [[current_a]] A",
-          "nl": "Zet SmartEVSE override-stroom naar [[current_a]] A"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=smartevse"
-          },
-          {
-            "type": "number",
-            "name": "current_a",
-            "title": {
-              "en": "Current (A)",
-              "nl": "Stroom (A)"
-            },
-            "min": 0,
-            "max": 32,
-            "step": 0.1
-          }
-        ]
-      }
-    ]
-  },
   "settings": [
     {
       "id": "host",
@@ -295,7 +112,11 @@
         "en": "RFID whitelist (JSON)",
         "nl": "RFID whitelist (JSON)"
       },
-      "value": "[]"
+      "value": "[]",
+      "hint": {
+        "en": "Example: [{\"rfid\":\"A1B2C3D4\",\"name\":\"Daisy\"}]",
+        "nl": "Voorbeeld: [{\"rfid\":\"A1B2C3D4\",\"name\":\"Daisy\"}]"
+      }
     },
     {
       "id": "denyUnknownRfid",
@@ -303,6 +124,15 @@
       "label": {
         "en": "Deny unknown RFID",
         "nl": "Onbekende RFID weigeren"
+      },
+      "value": true
+    },
+    {
+      "id": "autoAddRfid",
+      "type": "checkbox",
+      "label": {
+        "en": "Automatically add unknown RFID to whitelist",
+        "nl": "Onbekende RFID automatisch toevoegen aan whitelist"
       },
       "value": true
     },
@@ -328,6 +158,348 @@
       "min": 0,
       "max": 32,
       "step": 0.1
+    },
+    {
+      "id": "energyDongleEnabled",
+      "type": "checkbox",
+      "label": {
+        "en": "Use Homey Energy Dongle Local API",
+        "nl": "Homey Energy Dongle Local API gebruiken"
+      },
+      "value": false
+    },
+    {
+      "id": "energyDongleHost",
+      "type": "text",
+      "label": {
+        "en": "Energy Dongle IP address",
+        "nl": "Energy Dongle IP-adres"
+      },
+      "value": "",
+      "hint": {
+        "en": "For example 10.10.0.11",
+        "nl": "Bijvoorbeeld 10.10.0.11"
+      }
+    },
+    {
+      "id": "energyDonglePort",
+      "type": "number",
+      "label": {
+        "en": "Energy Dongle WebSocket port",
+        "nl": "Energy Dongle WebSocket-poort"
+      },
+      "value": 80,
+      "min": 1,
+      "max": 65535
+    },
+    {
+      "id": "energyDonglePath",
+      "type": "text",
+      "label": {
+        "en": "Energy Dongle WebSocket path",
+        "nl": "Energy Dongle WebSocket-pad"
+      },
+      "value": "/ws"
+    },
+    {
+      "id": "energyDongleRawDebug",
+      "type": "checkbox",
+      "label": {
+        "en": "Log raw Energy Dongle WebSocket messages",
+        "nl": "Ruwe Energy Dongle WebSocket-berichten loggen"
+      },
+      "value": false
+    },
+    {
+      "id": "energyDongleSubscribeMessage",
+      "type": "text",
+      "label": {
+        "en": "Optional WebSocket subscribe message",
+        "nl": "Optioneel WebSocket subscribe-bericht"
+      },
+      "value": "",
+      "hint": {
+        "en": "Leave empty unless the Local API documentation specifies a subscription command.",
+        "nl": "Leeg laten tenzij de Local API-documentatie een subscribe-opdracht voorschrijft."
+      }
+    },
+    {
+      "id": "energyDongleVoltage",
+      "type": "number",
+      "label": {
+        "en": "Phase voltage for current calculation (V)",
+        "nl": "Fasespanning voor stroomberekening (V)"
+      },
+      "value": 230,
+      "min": 180,
+      "max": 260,
+      "step": 1
+    },
+    {
+      "id": "energyDongleSendCurrents",
+      "type": "checkbox",
+      "label": {
+        "en": "Send currents automatically to SmartEVSE",
+        "nl": "Stromen automatisch naar SmartEVSE sturen"
+      },
+      "value": true
+    },
+    {
+      "id": "energyDongleInvertCurrents",
+      "type": "checkbox",
+      "label": {
+        "en": "Invert grid current direction",
+        "nl": "Richting netstromen omkeren"
+      },
+      "value": false,
+      "hint": {
+        "en": "Leave disabled when import is positive and export is negative.",
+        "nl": "Laat uitgeschakeld wanneer afname positief en teruglevering negatief is."
+      }
+    },
+    {
+      "id": "energyDongleSendInterval",
+      "type": "number",
+      "label": {
+        "en": "Minimum send interval (seconds)",
+        "nl": "Minimaal verzendinterval (seconden)"
+      },
+      "value": 1,
+      "min": 1,
+      "max": 30,
+      "step": 1
+    },
+    {
+      "id": "energyDongleFixedSendInterval",
+      "type": "number",
+      "label": {
+        "en": "Fixed SmartEVSE send interval (seconds)",
+        "nl": "Vast verzendinterval naar SmartEVSE (seconden)"
+      },
+      "value": 8,
+      "min": 1,
+      "max": 60,
+      "step": 1,
+      "hint": {
+        "en": "The latest received meter frame is resent at this fixed interval.",
+        "nl": "Het laatst ontvangen meterframe wordt steeds op dit vaste interval opnieuw verzonden."
+      }
+    },
+    {
+      "id": "homeBatteryEnabled",
+      "type": "checkbox",
+      "label": {
+        "en": "Use home battery compensation",
+        "nl": "Thuisbatterijcompensatie gebruiken"
+      },
+      "value": false,
+      "hint": {
+        "en": "Only affects SmartEVSE Solar mode.",
+        "nl": "Wordt door SmartEVSE alleen in Solar-modus gebruikt."
+      }
+    },
+    {
+      "id": "homeBatterySource",
+      "type": "dropdown",
+      "label": {
+        "en": "Home battery source",
+        "nl": "Bron thuisbatterij"
+      },
+      "value": "manual",
+      "values": [
+        {
+          "id": "manual",
+          "label": {
+            "en": "Manual / Flow",
+            "nl": "Handmatig / Flow"
+          }
+        },
+        {
+          "id": "homey_device",
+          "label": {
+            "en": "Existing Homey device",
+            "nl": "Bestaand Homey-apparaat"
+          }
+        }
+      ]
+    },
+    {
+      "id": "homeBatteryDevice",
+      "type": "text",
+      "label": {
+        "en": "Homey battery device name or ID",
+        "nl": "Naam of ID van Homey-batterijapparaat"
+      },
+      "value": "",
+      "hint": {
+        "en": "Enter the exact Homey device name, for example the Marstek battery device. Leave empty for automatic detection.",
+        "nl": "Vul de exacte Homey-apparaatnaam in, bijvoorbeeld het batterijapparaat uit de Marstek-app. Leeg laten voor automatische detectie."
+      }
+    },
+    {
+      "id": "homeBatteryCapability",
+      "type": "dropdown",
+      "label": {
+        "en": "Battery power/current capability",
+        "nl": "Capability voor batterijvermogen/-stroom"
+      },
+      "value": "auto",
+      "values": [
+        {
+          "id": "auto",
+          "label": {
+            "en": "Automatic",
+            "nl": "Automatisch"
+          }
+        },
+        {
+          "id": "measure_power",
+          "label": {
+            "en": "measure_power (W)",
+            "nl": "measure_power (W)"
+          }
+        },
+        {
+          "id": "battery_power",
+          "label": {
+            "en": "battery_power (W)",
+            "nl": "battery_power (W)"
+          }
+        },
+        {
+          "id": "measure_power.battery",
+          "label": {
+            "en": "measure_power.battery (W)",
+            "nl": "measure_power.battery (W)"
+          }
+        },
+        {
+          "id": "homebattery_power",
+          "label": {
+            "en": "homebattery_power (W)",
+            "nl": "homebattery_power (W)"
+          }
+        },
+        {
+          "id": "measure_current",
+          "label": {
+            "en": "measure_current (A)",
+            "nl": "measure_current (A)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "homeBatteryVoltage",
+      "type": "number",
+      "label": {
+        "en": "Battery AC voltage for W→A conversion",
+        "nl": "AC-spanning voor omzetting W→A"
+      },
+      "value": 230,
+      "min": 100,
+      "max": 500,
+      "step": 1
+    },
+    {
+      "id": "homeBatteryReadInterval",
+      "type": "number",
+      "label": {
+        "en": "Read battery device every (seconds)",
+        "nl": "Batterijapparaat uitlezen elke (seconden)"
+      },
+      "value": 5,
+      "min": 2,
+      "max": 60,
+      "step": 1
+    },
+    {
+      "id": "homeBatteryInvertPower",
+      "type": "checkbox",
+      "label": {
+        "en": "Invert battery power direction",
+        "nl": "Richting batterijvermogen omkeren"
+      },
+      "value": false,
+      "hint": {
+        "en": "Enable when your battery app reports charging as a negative value.",
+        "nl": "Inschakelen wanneer de batterij-app laden als negatieve waarde rapporteert."
+      }
+    },
+    {
+      "id": "homeBatteryStrategy",
+      "type": "dropdown",
+      "label": {
+        "en": "Home battery strategy",
+        "nl": "Thuisbatterijstrategie"
+      },
+      "value": "as_is",
+      "values": [
+        {
+          "id": "as_is",
+          "label": {
+            "en": "Send as-is (maximize EV charging)",
+            "nl": "Ongewijzigd sturen (EV-laden maximaliseren)"
+          }
+        },
+        {
+          "id": "discharge_only",
+          "label": {
+            "en": "Only compensate battery discharge",
+            "nl": "Alleen ontladen van batterij compenseren"
+          }
+        },
+        {
+          "id": "reserve",
+          "label": {
+            "en": "Reserve charging current for battery",
+            "nl": "Laadstroom voor batterij reserveren"
+          }
+        }
+      ]
+    },
+    {
+      "id": "homeBatteryReserveA",
+      "type": "number",
+      "label": {
+        "en": "Reserved battery charging current (A)",
+        "nl": "Gereserveerde batterijlaadstroom (A)"
+      },
+      "value": 10,
+      "min": 0,
+      "max": 100,
+      "step": 0.1
     }
-  ]
+  ],
+  "repair": [
+    {
+      "id": "dashboard",
+      "title": {
+        "en": "SmartEVSE Pro Dashboard",
+        "nl": "SmartEVSE Pro Dashboard"
+      }
+    }
+  ],
+  "capabilitiesOptions": {
+    "evcharger_charging_state": {
+      "title": {
+        "en": "Charging status",
+        "nl": "Oplaadstatus"
+      },
+      "preventInsights": true
+    },
+    "evcharger_charging": {
+      "title": {
+        "en": "Charging",
+        "nl": "Laden"
+      }
+    },
+    "charging_status_text": {
+      "title": {
+        "en": "Charging status",
+        "nl": "Oplaadstatus"
+      },
+      "preventInsights": true
+    }
+  }
 }

@@ -1,8 +1,60 @@
-<!doctype html><html><head><meta charset='utf-8'><title>SmartEVSE</title></head><body><h2>SmartEVSE</h2><p>Vul het IP-adres of hostname van je SmartEVSE in.</p><label>Host (IP/hostname)</label><input id='host' placeholder='bijv. 192.168.1.50' style='width:100%;padding:10px;box-sizing:border-box;'/><label>Poll-interval (seconden)</label><input id='poll' type='number' min='5' max='120' step='1' value='10' style='width:100%;padding:10px;box-sizing:border-box;'/><p style='opacity:.8;font-size:13px'>Er wordt getest met <code>http://&lt;host&gt;/settings</code>.</p><button id='btn' style='padding:10px 14px'>Verbinden & toevoegen</button><script>Homey.setTitle('SmartEVSE');const hostEl=document.getElementById('host');const pollEl=document.getElementById('poll');const btn=document.getElementById('btn');btn.addEventListener('click',async()=>{const host=(hostEl.value||'').trim();const pollInterval=Math.max(5,Math.min(120,Number(pollEl.value||10)));if(!host){await Homey.alert('Vul een host/IP in.','warning');return;}btn.disabled=true;try{const info=await Homey.emit('validate_host',{host});const serial=(info&&info.serialnr)?String(info.serialnr):host;const name=(info&&info.name)?info.name:`SmartEVSE ${serial}`;// Create EV charger device
-await Homey.createDevice({ 
-  name,
-  data: { id: `smartevse-${serial}` },
-  settings: { host, pollInterval }
-});
-await Homey.nextView();
-}catch(err){await Homey.alert(err&&err.message?err.message:String(err),'error');}finally{btn.disabled=false;}});</script></body></html>
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>SmartEVSE</title>
+  </head>
+  <body>
+    <h2>SmartEVSE</h2>
+    <p>Vul het IP-adres of hostname van je SmartEVSE in.</p>
+
+    <label>Host (IP/hostname)</label>
+    <input id="host" placeholder="bijv. 192.168.1.50" style="width:100%;padding:10px;box-sizing:border-box;">
+
+    <label>Poll-interval (seconden)</label>
+    <input id="poll" type="number" min="5" max="120" step="1" value="10" style="width:100%;padding:10px;box-sizing:border-box;">
+
+    <p style="opacity:.8;font-size:13px">Er wordt getest met <code>http://&lt;host&gt;/settings</code>. Als die test faalt, wordt het apparaat toch toegevoegd.</p>
+
+    <button id="btn" style="padding:10px 14px">Verbinden & toevoegen</button>
+
+    <script>
+      Homey.setTitle('SmartEVSE');
+
+      const hostEl = document.getElementById('host');
+      const pollEl = document.getElementById('poll');
+      const btn = document.getElementById('btn');
+
+      btn.addEventListener('click', async () => {
+        const host = (hostEl.value || '').trim().replace(/^https?:\/\//i, '').replace(/\/.*$/, '');
+        const pollInterval = Math.max(5, Math.min(120, Number(pollEl.value || 10)));
+
+        if (!host) {
+          await Homey.alert('Vul een host/IP in.', 'warning');
+          return;
+        }
+
+        btn.disabled = true;
+
+        try {
+          const info = await Homey.emit('validate_host', { host });
+          const serial = info && info.serialnr ? String(info.serialnr) : host;
+          const name = info && info.name ? info.name : `SmartEVSE ${serial}`;
+
+          await Homey.createDevice({
+            name,
+            data: { id: `smartevse-${serial}` },
+            settings: { host, pollInterval }
+          });
+
+          if (info && info.warning) await Homey.alert(info.warning, 'warning');
+          await Homey.nextView();
+        } catch (err) {
+          await Homey.alert(err && err.message ? err.message : String(err), 'error');
+        } finally {
+          btn.disabled = false;
+        }
+      });
+    </script>
+  </body>
+</html>
